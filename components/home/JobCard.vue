@@ -1,9 +1,10 @@
 <template>
   <v-card
-    outlined
     max-width="400px"
     class="pb-2 card"
+    outlined
     rounded
+    hover
     @click="onCardClickHandler"
   >
     <v-row no-gutters>
@@ -16,11 +17,9 @@
             {{ job.title }}
           </span>
 
-          <span class="ml-auto">
-            <v-btn icon color="indigo">
-              <v-icon>mdi-pin</v-icon>
-            </v-btn>
-          </span>
+          <v-btn class="ml-auto" icon color="indigo" @click="onPinHandler">
+            <v-icon>mdi-pin</v-icon>
+          </v-btn>
         </v-card-title>
 
         <v-card-subtitle>
@@ -48,8 +47,22 @@
         <v-divider />
 
         <v-card-actions class="d-flex justify-end mr-4">
-          <v-btn depressed> Salary </v-btn>
-          <v-btn depressed color="indigo" dark> Details </v-btn>
+          <v-btn v-if="!showSalary" depressed @click="onSalaryClick">
+            Salary
+          </v-btn>
+          <v-sheet v-else class="mr-2 d-flex align center">
+            <v-icon> mdi-currency-usd </v-icon>
+            {{ job.salary }}
+          </v-sheet>
+          <v-btn
+            :to="{ path: '/jobs', params: { id: job.id } }"
+            depressed
+            color="indigo"
+            dark
+            nuxt
+          >
+            Details
+          </v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -57,27 +70,35 @@
 </template>
 
 <script>
-import moment from "moment";
+import moment from 'moment'
 
 export default {
+  props: {
+    jobProp: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
   data: () => ({
+    showSalary: false,
     job: {
-      title: "Full Stack Developer",
-      group: "Web Development",
-      subGroup: "Full Stack",
-      id: "job-id-0",
+      title: 'Full Stack Developer',
+      group: 'Web Development',
+      subGroup: 'Full Stack',
+      id: '112233',
       date: Date.now(),
+      salary: '3000-4000',
       companyLogo:
-        "https://s3.eu-central-1.amazonaws.com/public.temicloud.io/images/uploads/d9f9c089-d258-4ae2-9ea7-0a5708404198.png",
-      tags: ["React", "Nodejs", "Git"],
+        'https://s3.eu-central-1.amazonaws.com/public.temicloud.io/images/uploads/d9f9c089-d258-4ae2-9ea7-0a5708404198.png',
+      tags: ['React', 'Nodejs', 'Git'],
     },
   }),
   computed: {
     formatDate() {
-      return moment(new Date(this.job.date)).fromNow();
+      return moment(new Date(this.job.date)).fromNow()
     },
     tags() {
-      return this.job.tags;
+      return this.job.tags
     },
   },
   methods: {
@@ -87,13 +108,36 @@ export default {
     onCardClickHandler() {
       //
     },
+    onPinHandler() {
+      if (!this.$store.getters['auth/isLoggedInGetter']) {
+        this.$store.dispatch('snackbar/snackbarAction', {
+          isActive: true,
+          message: 'Sign in to pin job!',
+          error: true,
+        })
+        return
+      }
+      this.$store.dispatch('auth/pinJobAction', this.job.id)
+    },
+    onSalaryClick() {
+      if (this.$store.getters['auth/isLoggedInGetter']) {
+        this.$store.dispatch('snackbar/snackbarAction', {
+          isActive: true,
+          message: 'Sign in to pin job!',
+          error: true,
+        })
+        return null
+      }
+
+      this.showSalary = true
+    },
   },
-};
+}
 </script>
 
-<style>
+<style scoped>
 .card:hover {
   transition: 0.1s;
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 </style>

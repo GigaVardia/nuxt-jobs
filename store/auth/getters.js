@@ -3,6 +3,6 @@ export default {
     return state.authUser
   },
   isLoggedInGetter(state) {
-    return state.isLoggedIn
+    return Boolean(state.authUser)
   },
 }

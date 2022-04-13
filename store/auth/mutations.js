@@ -1,8 +1,11 @@
 export default {
-  setAuthUserMutator(state, payload) {
-    state.authUse = payload
+  fetchAuthUserMutator(state, payload) {
+    state.authUser = payload
   },
-  setIsLoggedInMutator(state, payload) {
-    state.isLoggedIn = !!payload
+  pinJobMutator(state, payload) {
+    state.pined_jobs.push(payload)
+  },
+  unpinJobMutator(state, payload) {
+    state.pined_jobs = state.pined_jobs.filter((id) => id !== payload)
   },
 }

@@ -22,7 +22,7 @@
           :key="nestedItem.title"
           :to="{
             name: 'categories-category',
-            params: { category: nestedItem.routeParams },
+            params: { category: nestedItem.routeParam },
           }"
           nuxt
           exact

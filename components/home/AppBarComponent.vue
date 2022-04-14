@@ -1,8 +1,8 @@
 <template>
   <v-app-bar clipped-left fixed app>
-    <v-app-bar-title>
+    <v-toolbar-title>
       <NuxtLink to="/" class="title"> Jobs </NuxtLink>
-    </v-app-bar-title>
+    </v-toolbar-title>
 
     <div class="ml-auto mr-4 d-flex">
       <div class="mr-4">

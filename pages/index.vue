@@ -14,6 +14,7 @@
           <JobCard />
         </v-col>
       </v-row>
+      <Nuxt />
     </v-container>
   </div>
 </template>

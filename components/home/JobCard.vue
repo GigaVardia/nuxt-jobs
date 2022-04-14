@@ -9,7 +9,13 @@
   >
     <v-row no-gutters>
       <v-col class="d-flex justify-center align-center ml-2" cols="2">
-        <v-img width="50" height="50" contain :src="job.companyLogo" />
+        <v-img
+          width="50"
+          height="50"
+          contain
+          aspect-ratio="1"
+          :src="job.companyLogo"
+        />
       </v-col>
       <v-col>
         <v-card-title>
@@ -17,7 +23,7 @@
             {{ job.title }}
           </span>
 
-          <v-btn class="ml-auto" icon color="indigo" @click="onPinHandler">
+          <v-btn class="ml-auto" icon color="indigo" @click.stop="onPinHandler">
             <v-icon>mdi-pin</v-icon>
           </v-btn>
         </v-card-title>
@@ -38,7 +44,7 @@
             :key="`${job.id}-${tag}`"
             outlined
             class="mr-1 mb-1"
-            @click="onTagClickHandler"
+            @click.stop="onTagClickHandler"
           >
             #{{ tag }}
           </v-chip>
@@ -55,7 +61,7 @@
             {{ job.salary }}
           </v-sheet>
           <v-btn
-            :to="{ path: '/jobs', params: { id: job.id } }"
+            :to="{ name: 'jobs-id', params: { id: job.id } }"
             depressed
             color="indigo"
             dark
@@ -106,7 +112,7 @@ export default {
       //
     },
     onCardClickHandler() {
-      //
+      this.$router.push({ name: 'jobs-id', params: { id: this.job.id } })
     },
     onPinHandler() {
       if (!this.$store.getters['auth/isLoggedInGetter']) {

@@ -1,5 +1,5 @@
 <template>
-  <div>category</div>
+  <div>{{ $route.params.category }}</div>
 </template>
 
 <script>

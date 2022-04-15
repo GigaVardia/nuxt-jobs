@@ -63,12 +63,20 @@ export default {
         id: '2',
       },
       {
-        position: 'Security Developer',
+        position: 'Security Engineer',
         id: '3',
       },
       {
         position: 'DevOps Engineer',
         id: '4',
+      },
+      {
+          position: 'ML/AI Engineer',
+          id: '6',
+      },
+      {
+        position: 'UI/UX Designer',
+        id: '5',
       },
     ],
     fileError: false,

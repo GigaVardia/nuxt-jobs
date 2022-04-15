@@ -1,20 +1,23 @@
 <template>
-  <v-app-bar clipped-left fixed app>
+  <v-app-bar clipped-left fixed app flat>
     <v-toolbar-title>
-      <NuxtLink to="/" class="title">IT &mdash; Jobs </NuxtLink>
+      <NuxtLink to="/new-job" class="title">IT &mdash; Jobs </NuxtLink>
     </v-toolbar-title>
 
     <div class="ml-auto mr-4 d-flex">
       <div class="mr-4">
         <v-text-field hide-details placeholder="Search job..." />
       </div>
-      <div class="d-flex align-center justify-center">
+      <div v-if="!isLoggedIn" class="d-flex align-center justify-center">
         <div>
           <LoginComponent v-if="true" class="mr-4" />
         </div>
         <div>
           <RegisterComponent />
         </div>
+      </div>
+      <div v-else>
+        <v-icon large> mdi-account </v-icon>
       </div>
     </div>
   </v-app-bar>
@@ -26,6 +29,11 @@ import LoginComponent from './AuthComponents/LoginComponent.vue'
 
 export default {
   components: { RegisterComponent, LoginComponent },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters['auth/isLoggedInGetter']
+    },
+  },
 }
 </script>
 

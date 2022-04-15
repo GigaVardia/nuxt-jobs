@@ -11,26 +11,27 @@
     </v-main>
 
     <MainSnackbarComponent />
-
-    <FooterComponent />
   </v-app>
 </template>
 
 <script>
 import AppBarComponent from '../components/home/AppBarComponent.vue'
 import NavigationDrawer from '../components/home/NavigationDrawer.vue'
-import FooterComponent from '../components/home/FooterComponent.vue'
 import MainSnackbarComponent from '../components/common/MainSnackBarComponent'
+import localStorageService from '~/services/local_storage_service'
 
 export default {
   name: 'DefaultLayout',
   components: {
     AppBarComponent,
     NavigationDrawer,
-    FooterComponent,
     MainSnackbarComponent,
   },
-  mounted() {},
+  mounted() {
+    if (localStorageService.getAuth()) {
+      this.$store.dispatch('auth/fetchAuthUserAction')
+    }
+  },
 }
 </script>
 

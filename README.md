@@ -1,5 +1,7 @@
 # nuxt-jobs
 
+App on heroku : https://tech-jobs-nuxt.herokuapp.com/
+
 ## Build Setup
 
 ```bash

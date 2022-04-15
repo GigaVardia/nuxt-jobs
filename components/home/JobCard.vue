@@ -53,7 +53,7 @@
         <v-divider />
 
         <v-card-actions class="d-flex justify-end mr-4">
-          <v-btn v-if="!showSalary" depressed @click="onSalaryClick">
+          <v-btn v-if="!showSalary" depressed @click.stop="onSalaryClick">
             Salary
           </v-btn>
           <v-sheet v-else class="mr-2 d-flex align center">

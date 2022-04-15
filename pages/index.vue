@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-container>
-      <v-row>
-        <h1 class="text-h1">Latest Jobs</h1>
+    <v-container class="pa-0">
+      <v-row justify="center" class="bg-gradient py-2">
+        <h1 class="text-h2">Find Your Dream Job</h1>
       </v-row>
       <v-row>
         <v-col
@@ -61,5 +61,18 @@ export default {
 <style>
 .v-list {
   padding: 0;
+}
+</style>
+
+<style scoped>
+.bg-gradient {
+  color: white;
+  background: rgb(171, 164, 250);
+  background: radial-gradient(
+    circle,
+    rgba(171, 164, 250, 1) 0%,
+    rgba(124, 124, 221, 1) 43%,
+    rgba(120, 215, 236, 1) 100%
+  );
 }
 </style>

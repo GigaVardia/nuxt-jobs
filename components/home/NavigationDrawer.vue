@@ -3,9 +3,9 @@
     :permanent="!$vuetify.breakpoint.mobile"
     clipped
     app
-    width="280"
+    width="300"
   >
-    <v-list expand>
+    <v-list expand height="">
       <v-list-group
         v-for="(item, index) in items"
         :key="item.id"
@@ -17,26 +17,32 @@
           </v-list-item-content>
         </template>
 
-        <v-list-item
-          v-for="nestedItem in item.items"
-          :key="nestedItem.title"
-          :to="{
-            name: 'categories-category',
-            params: { category: nestedItem.routeParam },
-          }"
-          nuxt
-          exact
-          sub-group
-        >
-          <v-list-item-icon class="mr-2">
-            <v-icon>mdi-circle-small </v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ nestedItem.title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <template v-for="nestedItem in item.items">
+          <v-divider :key="`divider-${nestedItem.title}`" />
+          <v-list-item
+            :key="nestedItem.title"
+            :to="{
+              name: 'categories-category',
+              params: { category: nestedItem.routeParam },
+            }"
+            nuxt
+            exact
+            sub-group
+          >
+            <v-list-item-icon class="mr-2">
+              <v-icon>mdi-circle-small </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ nestedItem.title }}
+                <v-icon> mdi-circle-small </v-icon>
+                <span class="text-subtitle-2">
+                  {{ nestedItem.jobs }}
+                </span>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
       </v-list-group>
     </v-list>
   </v-navigation-drawer>
@@ -88,11 +94,19 @@ export default {
             },
             {
               title: 'C#/.NET',
-              routeParam: 'c#-.net',
+              routeParam: 'csharp-.net',
             },
             {
               title: 'Java',
               routeParam: 'java',
+            },
+            {
+              title: 'PHP',
+              routeParam: 'php',
+            },
+            {
+              title: 'Python',
+              routeParam: 'python',
             },
             {
               title: 'Ruby',
@@ -106,17 +120,17 @@ export default {
           items: [
             {
               title: 'All',
-              params: 'qa-all',
+              routeParam: 'qa-all',
               jobs: 8,
             },
             {
               title: 'Manual testing',
-              param: 'manual-testing',
+              routeParam: 'manual-testing',
               jobs: 3,
             },
             {
               title: 'Test automation',
-              param: 'test-automation',
+              routeParam: 'test-automation',
               jobs: 5,
             },
           ],
@@ -127,22 +141,22 @@ export default {
           items: [
             {
               title: 'All',
-              params: 'operations-all',
+              routeParam: 'operations-all',
               jobs: 15,
             },
             {
               title: 'DevOps',
-              param: 'devops',
+              routeParam: 'devops',
               jobs: 7,
             },
             {
               title: 'System administrator',
-              param: 'system-administrator',
+              routeParam: 'system-administrator',
               jobs: 5,
             },
             {
               title: 'Database administrator',
-              param: 'database-administrator',
+              routeParam: 'database-administrator',
               jobs: 3,
             },
           ],

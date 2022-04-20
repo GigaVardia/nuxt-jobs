@@ -5,13 +5,16 @@
         <h1 class="text-h2">Find Your Dream Job</h1>
       </v-row>
       <v-row>
+        <filter-jobs-component />
+      </v-row>
+      <v-row>
         <v-col
           v-for="job in jobs"
           :key="job.jobId"
           class="d-flex justify-center"
           cols="4"
         >
-          <JobCard />
+          <job-card-component />
         </v-col>
       </v-row>
       <Nuxt />
@@ -20,10 +23,12 @@
 </template>
 
 <script>
-import JobCard from '~/components/home/JobCard.vue'
+import JobCardComponent from '~/components/home/JobCardComponent.vue'
+import FilterJobsComponent from '~/components/home/FilterJobsComponent.vue'
+
 export default {
   name: 'IndexPage',
-  components: { JobCard },
+  components: { JobCardComponent, FilterJobsComponent },
   async asyncData({ $axios }) {
     try {
       // const { data } = await $axios.get('/jobs')

@@ -97,6 +97,8 @@ export default {
       companyLogo:
         'https://s3.eu-central-1.amazonaws.com/public.temicloud.io/images/uploads/d9f9c089-d258-4ae2-9ea7-0a5708404198.png',
       tags: ['React', 'Nodejs', 'Git'],
+      isRemote: false,
+      seniorityLevel: 'Senior',
     },
   }),
   computed: {
